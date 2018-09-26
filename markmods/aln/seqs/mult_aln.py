@@ -10,18 +10,18 @@ from markmods.models.hmm.hmm_profile import hmm_profile
 
 
 class HubsTree(object):
-    def __init__ (self, hubs, levels):
+    def __init__(self, hubs, levels):
         self.hubs = hubs
         self.levels = levels
 
 
 class Hub(object):
-    def __init__ (self, content, links):
+    def __init__(self, content, links):
         self.content = content
         self.links = links
 
 
-def probcons(sequences, emis, threads, delta, n_iter, match, match_to_match, gap_open, gap_ext, to_exit_prob, start_prob, ends_bonus, gap_fine, no_aln_fine, exit_prob, prof_match_c, len_bonus, dist_step):
+def construct_mult_aln(sequences, emis, threads, delta, n_iter, match, match_to_match, gap_open, gap_ext, to_exit_prob, start_prob, ends_bonus, gap_fine, no_aln_fine, exit_prob, prof_match_c, len_bonus, dist_step):
     symb_freqs = freqs_calc(sequences)
     log_emis = log_matrix(emis)
     log_params = get_params_log(match, match_to_match, gap_open, gap_ext, to_exit_prob, start_prob, ends_bonus, gap_fine, no_aln_fine, exit_prob)

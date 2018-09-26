@@ -1,6 +1,9 @@
 # MarkMods - the implementation of different Markov models for Python
 ## Requirements
 Python >= 3.5
+Redis
+###Python packages:
+redis >= 2.10.6
 
 ## Installation
 To install the package type:

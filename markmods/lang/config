@@ -1,0 +1,26 @@
+input_file=text.txt ##the file that you want to analyze
+stop_words_number=1000 ##the number of stop words in output
+num_threads=5 ##the number of threads wich the program can use
+aln_glocality=0.14 ##this parameter characterizes the type of alignments: 0.0 - local, 9.0 - global
+spec_symbs=("\@", "\<", "\>", "\:", "\;", "\'", '\"', "\#", "\|", "\/", "\%", " ", "\$", "\.", "\,", "\?", "\!", "\+", "\_", "\-", "\)", "\(", "\[", "\]", "\{", "\}", "\*", "\&", "\^", "\=", "\`", "\~", "\\", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9") ##punctuation marks, digits etc.
+phr_sep=("\.", "\!", "\?") ##phrases separators
+###advanced parameters
+match_s_prob=0.75
+match_to_match=1.15
+av_match=0.8
+gap_open=0.15
+gap_ext=0.25
+to_exit_prob=1.0
+start_prob=1.0
+ends_bonus=1.15
+gap_fine=0.3
+no_aln_fine=0.26
+exit_prob=1.0
+aln_min_prob=0
+mismatch=0.05
+match_start=1.05
+delta=0.1
+n_iter=5
+link_size=3
+signif_clust=6
+db_number=0

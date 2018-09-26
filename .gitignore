@@ -1,0 +1,7 @@
+.idea/
+dist/
+*.log
+*.pyc
+*__pycache__/
+*.egg-info/
+*test_results/

@@ -1,0 +1,30 @@
+{
+  "states": {
+    "state1": {"emis_func": "add_state1_emis_func", "group": "group1"},
+    "state2": {"emis_func": "add_state2_emis_func", "group": "group2"},
+    "state3": {"emis_func": "add_state3_emis_func", "group": "group2"}
+  },
+  "trans": {
+    "group1-group1": {
+      "d1": 0.9,
+      "d2": 0.95,
+      "d3": 0.85,
+      "d1-d2": 0.05,
+      "d-d": 0.001,
+      "d-d-d": 0.9
+    },
+    "group2-group2": {
+      "d": 0.3,
+      "d2": 0.25,
+      "d-d": 0.03,
+      "d-d-d": 0.1
+    },
+    "group1-group2": {
+      "d": 0.2,
+      "d1-d2": 0.01,
+      "d2-d3": 0.05,
+      "d1-d3": 0.002,
+      "d-d-d": 0.21
+    }
+  }
+}

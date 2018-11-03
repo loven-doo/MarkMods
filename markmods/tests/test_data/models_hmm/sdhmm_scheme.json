@@ -1,0 +1,12 @@
+{
+  "states": {
+    "state1": {"emis_func": "add_state1_emis_func", "group": "group1"},
+    "state2": {"emis_func": "add_state2_emis_func", "group": "group2"},
+    "state3": {"emis_func": "add_state3_emis_func", "group": "group1"}
+  },
+  "trans": {
+    "group1-group1": 0.9,
+    "group2-group2": 0.8,
+    "group1-group2": 0.2
+  }
+}

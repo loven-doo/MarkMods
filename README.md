@@ -2,8 +2,9 @@
 ## Requirements
 Python >= 3.5
 Redis
-###Python packages:
+### Python packages:
 redis >= 2.10.6
+numpy >= 1.15.3
 
 ## Installation
 To install the package type:

@@ -3,7 +3,7 @@
 Python >= 3.5
 Redis
 ### Python packages:
-redis >= 2.10.6
+redis >= 2.10.6  
 numpy >= 1.15.3
 
 ## Installation

@@ -1,12 +1,12 @@
 from abc import abstractmethod, ABCMeta
 
 
-class ModelBase(ABCMeta):
+class ModelBase(metaclass=ABCMeta):
 
     @abstractmethod
-    def fit(cls):
+    def fit(self):
         pass
 
     @abstractmethod
-    def predict(cls):
+    def predict(self):
         pass

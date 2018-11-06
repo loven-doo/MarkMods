@@ -4,23 +4,25 @@ from markmods.models.hmm.base import HMMBase, State
 class SDHMM(HMMBase):
     # Single Dimension Hidden Markov Model
 
-    def create_hmm(self):
-        pass
+    def prepare_trans(self, state_conf, state_name):
+        state_trans = self.prepare_pd_trans(state_conf=state_conf, pd_trans=self._scheme["trans"])
+        state_trans[state_name] = state_conf["self_trans"]
+        return state_trans
 
     @property
     def scheme(self):
         return
 
-    def viterbi(self):
+    def viterbi(self, data_array):
         pass
 
-    def fb(self):
+    def fb(self, data_array):
         pass
 
-    def forward(self):
+    def forward(self, data_array):
         pass
 
-    def backward(self):
+    def backward(self, data_array):
         pass
 
     def bw(self):

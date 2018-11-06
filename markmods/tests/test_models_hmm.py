@@ -23,7 +23,25 @@ class TestBase(unittest.TestCase):
 
 
 class TestSDHMM(unittest.TestCase):
-    pass
+
+    data_array = np.array([
+        {"s": "a"},
+        {"s": "a"},
+        {"s": "b"},
+        {"s": "a"},
+        {"s": "b"},
+        {"s": "b"},
+        {"s": "b"},
+        {"s": "a"},
+    ])
+    with open(os.path.join(INPUT_DIR, "sdhmm_scheme.json")) as hmm_scheme_json:
+        hmm_scheme = json.load(hmm_scheme_json)  # 1D HMM configuration
+    # Let's add emission functions to configuration dict
+    hmm_scheme["states"]["state1"]["emis_func"] = lambda x: {"a": 0.99, "b": 0.01}[x["s"]]  # it can be any function
+    hmm_scheme["states"]["state1"]["emis_func"] = lambda x: {"a": 0.01, "b": 0.99}[x["s"]]
+    hmm_scheme["states"]["state3"]["emis_func"] = lambda x: 0.1
+    hmm_scheme["states"]["state4"]["emis_func"] = lambda x: 0.2
+    single_dim_hmm = sdhmm.SDHMM(scheme=hmm_scheme)
 
 
 class TestMDHMM(unittest.TestCase):

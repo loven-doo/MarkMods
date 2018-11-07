@@ -15,7 +15,7 @@ class ModelBase(metaclass=ABCMeta):
     def dump(self, scheme_path, keep_groups):
         pass
 
-    @abstractmethod
     @classmethod
+    @abstractmethod
     def load(cls, scheme_path):
         pass

@@ -80,8 +80,8 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
     def prepare_trans(self, state_conf, state_name):
         pass
 
-    @abstractmethod
     @property
+    @abstractmethod
     def scheme(self):
         pass
 

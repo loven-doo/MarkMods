@@ -4,8 +4,8 @@ from markmods.models.hmm.base import HMMBase, State
 class SDHMM(HMMBase):
     # Single Dimension Hidden Markov Model
 
-    def prepare_trans(self, state_conf, state_name):
-        state_trans = self.prepare_pd_trans(state_conf=state_conf, pd_trans=self._scheme["trans"])
+    def _prepare_trans(self, state_conf, state_name):
+        state_trans = self._prepare_pd_trans(state_conf=state_conf, pd_trans=self._scheme["trans"])
         state_trans[state_name] = state_conf["self_trans"]
         return state_trans
 

@@ -124,6 +124,17 @@ class TestMDHMM(unittest.TestCase):
     }[frozenset(x["s_set"])]
     mult_dim_hmm = mdhmm.MDHMM(scheme=hmm_scheme)
 
+    def test_init(self):
+        states_trans_exp = {
+            'state1': {},
+            'state2': {},
+            'state3': {},
+        }
+        states_trans = dict()
+        for state_name in self.mult_dim_hmm.states:
+            states_trans[state_name] = self.mult_dim_hmm.states[state_name].trans
+        self.assertEqual(states_trans_exp, states_trans)
+
 
 if __name__ == "__main__":
     unittest.main()

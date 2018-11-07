@@ -23,7 +23,7 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
         self.groups = defaultdict(set)
         self.states = dict()
         self.nd = 1
-        self.create_hmm()
+        self._create_hmm()
 
     def fit(self):
         pass
@@ -38,13 +38,13 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
     def load(cls, scheme_path):
         pass
 
-    def create_hmm(self):
+    def _create_hmm(self):
         for state_name in self._scheme["states"]:
             self.groups[self._scheme["states"][state_name]["group"]].add(state_name)
 
         for state_name in self._scheme["states"]:
             state_conf = self._scheme["states"][state_name]
-            state_trans = self.prepare_trans(state_conf, state_name)
+            state_trans = self._prepare_trans(state_conf, state_name)
             self.states[state_name] = State(emis_func=state_conf["emis_func"],
                                             emis_polinomial_c=state_conf["emis_polynomial_c"],
                                             name=state_name,
@@ -53,7 +53,7 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
                                             trans=state_trans,
                                             nd=self.nd)
 
-    def prepare_pd_trans(self, state_conf, pd_trans):
+    def _prepare_pd_trans(self, state_conf, pd_trans):
         state_pd_trans = dict()
         for trans_i in pd_trans:
             group_to = None
@@ -77,7 +77,7 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
         return state_pd_trans
 
     @abstractmethod
-    def prepare_trans(self, state_conf, state_name):
+    def _prepare_trans(self, state_conf, state_name):
         pass
 
     @property

@@ -21,30 +21,29 @@ class TestGeneral(unittest.TestCase):
     def test_combine_parts(self):
         to_combine = [
             ["abc", "def", "gh"],
-            ["ij", "KLM"],
-            ["oprs", "tutu", "VW"]
+            ["ij", "klm"],
+            ["edf", "abc", "vw"]
         ]
         combined_exp = [
-            "abc-ij-oprs",
-            "abc-ij-tutu",
-            "abc-ij-VW",
-            "abc-KLM-oprs",
-            "abc-KLM-tutu",
-            "abc-KLM-VW",
-            "def-ij-oprs",
-            "def-ij-tutu",
-            "def-ij-VW",
-            "def-KLM-oprs",
-            "def-KLM-tutu",
-            "def-KLM-VW",
-            "gh-ij-oprs",
-            "gh-ij-tutu",
-            "gh-ij-VW",
-            "gh-KLM-oprs",
-            "gh-KLM-tutu",
-            "gh-KLM-VW",
+            ["abc", "edf", "ij"],
+            ["abc", "ij", "vw"],
+            ["abc", "edf", "klm"],
+            ["abc", "klm", "vw"],
+            ["def", "edf", "ij"],
+            ["abc", "def", "ij"],
+            ["def", "ij", "vw"],
+            ["def", "edf", "klm"],
+            ["abc", "def", "klm"],
+            ["def", "klm", "vw"],
+            ["edf", "gh", "ij"],
+            ["abc", "gh", "ij"],
+            ["gh", "ij", "vw"],
+            ["edf", "gh", "klm"],
+            ["abc", "gh", "klm"],
+            ["gh", "klm", "vw"],
         ]
-        self.assertEqual(set(combined_exp), set(general.combine_str(to_combine, "-")))
+        self.assertEqual(set(tuple(comb) for comb in combined_exp),
+                         set(tuple(comb) for comb in general.combine_parts(to_combine, without_repeats=True, sort="+")))
 
 
 if __name__ == "__main__":

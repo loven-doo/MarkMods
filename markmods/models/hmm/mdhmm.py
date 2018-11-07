@@ -1,4 +1,4 @@
-from markmods.general import combine_str
+from markmods.general import combine_parts
 from markmods.models.hmm.base import HMMBase, State
 
 
@@ -29,7 +29,7 @@ class MDHMM(HMMBase):
                     avail_dims.append(["d"+str(i+1) for i in range(self.nd)])
                 else:
                     avail_dims.append([dim,])
-            dim_keys = combine_str(avail_dims, "-", without_repeats=True)
+            dim_keys = ["-".join(dkey_list) for dkey_list in combine_parts(avail_dims, without_repeats=True, sort="+")]
             for dkey in dim_keys:
                 if dkey not in dim_dict:
                     dim_dict[dkey] = dim_dict[dim_key]

@@ -126,9 +126,33 @@ class TestMDHMM(unittest.TestCase):
 
     def test_init(self):
         states_trans_exp = {
-            'state1': {},
-            'state2': {},
-            'state3': {},
+            'state1': {
+                'd1': {'state1': 0.9, 'state2': 0.1, 'state3': 0.1},
+                'd1-d2': {'state1': 0.8, 'state2': 0.35, 'state3': 0.35},
+                'd1-d2-d3': {'state1': 0.95, 'state2': 0.1, 'state3': 0.1},
+                'd1-d3': {'state1': 0.8, 'state2': 0.55, 'state3': 0.55},
+                'd2': {'state1': 0.9, 'state2': 0.15, 'state3': 0.15},
+                'd2-d3': {'state1': 0.8, 'state2': 0.35, 'state3': 0.35},
+                'd3': {'state1': 0.9, 'state2': 0.1, 'state3': 0.1},
+            },
+            'state2': {
+                'd1': {'state1': 0.1, 'state2': 0.35, 'state3': 0.3},
+                'd1-d2': {'state1': 0.45, 'state2': 0.37, 'state3': 0.3},
+                'd1-d2-d3': {'state1': 0.1, 'state2': 0.2, 'state3': 0.3},
+                'd1-d3': {'state1': 0.85, 'state2': 0.25, 'state3': 0.1},
+                'd2': {'state1': 0.05, 'state2': 0.32, 'state3': 0.3},
+                'd2-d3': {'state1': 0.45, 'state2': 0.3, 'state3': 0.3},
+                'd3': {'state1': 0.1, 'state2': 0.32, 'state3': 0.25},
+            },
+            'state3': {
+                'd1': {'state1': 0.1, 'state2': 0.3, 'state3': 0.3},
+                'd1-d2': {'state1': 0.45, 'state2': 0.3, 'state3': 0.45},
+                'd1-d2-d3': {'state1': 0.1, 'state2': 0.3, 'state3': 0.4},
+                'd1-d3': {'state1': 0.85, 'state2': 0.1, 'state3': 0.25},
+                'd2': {'state1': 0.05, 'state2': 0.3, 'state3': 0.3},
+                'd2-d3': {'state1': 0.45, 'state2': 0.3, 'state3': 0.25},
+                'd3': {'state1': 0.1, 'state2': 0.25, 'state3': 0.3},
+            },
         }
         states_trans = dict()
         for state_name in self.mult_dim_hmm.states:

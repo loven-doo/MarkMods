@@ -7,6 +7,7 @@ class SDHMM(HMMBase):
     def _prepare_trans(self, state_conf, state_name):
         state_trans = self._prepare_pd_trans(state_conf=state_conf, pd_trans=self._scheme["trans"])
         state_trans[state_name] = state_conf["self_trans"]
+        # TODO: transitions normalization
         return state_trans
 
     @property

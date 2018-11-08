@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from markmods.general import combine_parts
 from markmods.models.hmm.base import HMMBase, State
 
@@ -14,10 +16,11 @@ class MDHMM(HMMBase):
             if len(pdim_list) > max_dim:
                 max_dim = len(pdim_list)
         self.nd = max_dim
-        state_trans = self._expand_dim_keys(state_trans)
-        state_self_trans = self._expand_dim_keys(state_conf["self_trans"])
+        state_trans = deepcopy(self._expand_dim_keys(state_trans))
+        state_self_trans = deepcopy(self._expand_dim_keys(state_conf["self_trans"]))
         for pdim in state_self_trans:
-            state_trans[pdim][state_name] = state_self_trans[pdim]
+            state_trans[pdim][state_name] = deepcopy(state_self_trans[pdim])
+        # TODO: transitions normalization
         return state_trans
 
     def _expand_dim_keys(self, dim_dict):
@@ -32,9 +35,8 @@ class MDHMM(HMMBase):
             dim_keys = ["-".join(dkey_list) for dkey_list in combine_parts(avail_dims, without_repeats=True, sort="+")]
             for dkey in dim_keys:
                 if dkey not in dim_dict:
-                    dim_dict[dkey] = dim_dict[dim_key]
-            if "-d-" in dim_key.lower() or dim_key.lower()[:2] == "d-" or dim_key.lower()[-2:] == "-d" or \
-                    dim_key.lower() == "d":
+                    dim_dict[dkey] = deepcopy(dim_dict[dim_key])
+            if "-d-" in dim_key or dim_key[:2] == "d-" or dim_key[-2:] == "-d" or dim_key == "d":
                 dim_dict.pop(dim_key)
         return dim_dict
 

@@ -34,6 +34,14 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
     def dump(self, scheme_path, keep_groups=False):
         pass
 
+    @property
+    def features(self):
+        return
+
+    @property
+    def labels(self):
+        return
+
     @classmethod
     def load(cls, scheme_path):
         pass

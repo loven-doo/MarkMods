@@ -25,10 +25,10 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
         self.nd = 1
         self._create_hmm()
 
-    def fit(self):
+    def fit(self, X, Y):
         pass
 
-    def predict(self):
+    def predict(self, X):
         pass
 
     def dump(self, scheme_path, keep_groups=False):

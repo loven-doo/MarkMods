@@ -4,15 +4,15 @@ from abc import abstractmethod, ABCMeta
 class ModelBase(metaclass=ABCMeta):
 
     @abstractmethod
-    def fit(self):
+    def fit(self, X, Y):
         pass
 
     @abstractmethod
-    def predict(self):
+    def predict(self, X):
         pass
 
     @abstractmethod
-    def dump(self, scheme_path, keep_groups):
+    def dump(self, scheme_path, **kwargs):
         pass
 
     @classmethod

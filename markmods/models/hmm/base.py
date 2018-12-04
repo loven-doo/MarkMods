@@ -31,6 +31,9 @@ class HMMBase(ModelBase, metaclass=ABCMeta):
     def predict(self, X):
         pass
 
+    def validate(self, X_test, Y_test):
+        pass
+
     def dump(self, scheme_path, keep_groups=False):
         pass
 

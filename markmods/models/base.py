@@ -12,6 +12,10 @@ class ModelBase(metaclass=ABCMeta):
         pass
 
     @abstractmethod
+    def validate(self, X_test, Y_test):
+        pass
+
+    @abstractmethod
     def dump(self, scheme_path, **kwargs):
         pass
 

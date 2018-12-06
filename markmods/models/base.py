@@ -26,7 +26,7 @@ class ModelBase(metaclass=ABCMeta):
         confusion_matrix.columns = labels
         for i in range(len(test_pred)):
             not_TN = [Y_test[i]]
-            prob_labels = self._get_prob_labels(test_pred[i], n_prob_states=1, max_d=0.1)
+            prob_labels = get_prob_labels(test_pred[i], n_prob_states=1, max_d=0.1)
             if Y_test[i] in prob_labels:
                 tables_2x2[Y_test[i]]["TP"] += 1
                 confusion_matrix[Y_test[i]][Y_test[i]] += 1
@@ -56,22 +56,6 @@ class ModelBase(metaclass=ABCMeta):
         tables_2x2["Chi-sq_P-value"] = chi2_contingency(tables_2x2_array)[1]
         return tables_2x2, confusion_matrix
 
-    @staticmethod
-    def _get_prob_labels(labels_scores, n_prob_states=1, max_d=0.1):
-        prob_labels = [(None, 0)]*n_prob_states
-        for label in labels_scores:
-            for i in range(n_prob_states):
-                if i > 0:
-                    if prob_labels[i-1][1]-labels_scores[label] > max_d:
-                        break
-                if prob_labels[i] is None:
-                    prob_labels[i] = (label, labels_scores[label])
-                    break
-                elif labels_scores[label]-prob_labels[i][1] > 0:
-                    prob_labels.insert(i, (label, labels_scores[label]))
-                    break
-        return list(filter(None, map(lambda l: l[0], prob_labels[:n_prob_states])))
-
     @abstractmethod
     def dump(self, scheme_path, **kwargs):
         pass
@@ -90,6 +74,22 @@ class ModelBase(metaclass=ABCMeta):
     @abstractmethod
     def labels(self):
         pass
+
+
+def get_prob_labels(labels_scores, n_prob_states=1, max_d=0.1):
+    prob_labels = [(None, 0)]*n_prob_states
+    for label in labels_scores:
+        for i in range(n_prob_states):
+            if i > 0:
+                if prob_labels[i-1][1]-labels_scores[label] > max_d:
+                    break
+            if prob_labels[i] is None:
+                prob_labels[i] = (label, labels_scores[label])
+                break
+            elif labels_scores[label]-prob_labels[i][1] > 0:
+                prob_labels.insert(i, (label, labels_scores[label]))
+                break
+    return list(filter(None, map(lambda l: l[0], prob_labels[:n_prob_states])))
 
 
 def aggregate_array(array, aggr_level, group_lims=None):

@@ -1,0 +1,9 @@
+Example for 2D HMM
+start state: only diagonal transition (optionally can be placed before any cell in a 2D data grid)
+end state: empty state located alongside bottom and right borders of data grid (optionally can occur after any cell in a 2D grid with diagonal transition;
+    end to end transition can be disallowed)
+C_x(i,j) = {s(i,j-1)=x_i,j-1; s(i-1,j)=x_i-1,j; s(i-1,j-1)=x_i-1,j-1}
+P(s(i,j)=x_i,j|C_x(i,j)) = s(i,j)_e * P(s(i,j-1)=x_i,j-1|C_x(i,j-1))*s(i,j-1)_t * P(s(i-1,j)=x_i,j-1|C_x(i-1,j))*s(i-1,j)_t * s(i-1,j-1)_t/P(s(i-1,j-1)=x_i-1,j-1|C_x(i-1,j-1))
+fwd(s(i,j)) = SUM_X(P(s(i,j)=x_i,j|C_x(i,j)))
+bwd(s(i,j)) analogous to fwd(s(i,j))
+vit(s(i,j)) = max_X(P(s(i,j)=x_i,j|C_x(i,j)))
